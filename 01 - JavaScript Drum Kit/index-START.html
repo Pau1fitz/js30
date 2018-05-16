@@ -59,6 +59,29 @@
 
 <script>
 
+const keys = document.getElementsByClassName('key');
+
+document.addEventListener('keydown', (e) => {
+  for (let item of keys) {
+    const data = item.closest('[data-key]');
+    
+    if(e.keyCode === parseInt(data.dataset.key)) {
+      data.classList.add('animate');
+    }
+
+    setTimeout(() => {
+      data.classList.remove('animate')
+    }, 200);
+
+    const audio = document.querySelectorAll('audio');
+    for (let sound of audio) {
+      if(sound.dataset.key === data.dataset.key) {
+        sound.play();
+      }
+    }
+  }
+});
+
 </script>
 
 
